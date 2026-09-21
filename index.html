@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Furixv Bot</title>
+<style>
+  :root {
+    --ink: #16231f;
+    --paper: #f6f4ee;
+    --paper-dim: #ece8dd;
+    --accent: #1f7a5c;
+    --accent-soft: #dcefe5;
+    --line: #d8d2c2;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eef2ef;
+      --paper: #10160f-;
+      --paper: #0f1512;
+      --paper-dim: #171e1a;
+      --accent: #5fd6a8;
+      --accent-soft: #16332a;
+      --line: #2a332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #eef2ef;
+    --paper: #0f1512;
+    --paper-dim: #171e1a;
+    --accent: #5fd6a8;
+    --accent-soft: #16332a;
+    --line: #2a332c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    line-height: 1.55;
+  }
+  .sans {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  header {
+    padding: 22px 24px calc(22px + env(safe-area-inset-top, 0px));
+    padding-top: calc(22px + env(safe-area-inset-top, 0px));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .mark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .mark .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent);
+  }
+  nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+    opacity: 0.65;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  nav a:hover { opacity: 1; }
+
+  main { max-width: 760px; margin: 0 auto; padding: 8px 24px 40px; }
+
+  .hero { padding: 40px 0 36px; border-bottom: 1px solid var(--line); }
+  .hero h1 {
+    font-size: clamp(32px, 7vw, 46px);
+    line-height: 1.08;
+    margin: 0 0 18px;
+    max-width: 15ch;
+    font-weight: 600;
+  }
+  .hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    max-width: 46ch;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+  .badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+  }
+
+  section.block { padding: 34px 0; border-bottom: 1px solid var(--line); }
+  section.block:last-of-type { border-bottom: none; }
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: none;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  h2::before { content: "— "; opacity: 0.5; }
+
+  ul.features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  ul.features li {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    opacity: 0.9;
+  }
+  ul.features li .n { color: var(--accent); font-weight: 700; }
+
+  .prose { font-family: 'Inter', sans-serif; font-size: 15px; opacity: 0.88; }
+  .prose p { margin: 0 0 14px; }
+  .prose h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    margin: 22px 0 8px;
+    color: var(--ink);
+  }
+  .prose ul { margin: 0 0 14px; padding-left: 20px; }
+  .prose li { margin-bottom: 6px; }
+
+  #privacy { scroll-margin-top: 24px; }
+
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 26px 24px calc(30px + env(safe-area-inset-bottom, 0px));
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    opacity: 0.55;
+  }
+
+  a.jump { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark"><span class="dot"></span>Furixv Bot</div>
+  <nav class="sans">
+    <a href="#tentang">Tentang</a>
+    <a href="#privacy">Privasi</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="tentang">
+    <h1>Bot WhatsApp pribadi buat chat, unduh media, dan main-main ringan.</h1>
+    <p>Furixv Bot adalah proyek otomatisasi WhatsApp yang saya kembangkan dan pakai sendiri bersama beberapa teman, buat merapikan hal-hal yang biasa dilakukan manual di chat sehari-hari.</p>
+    <div class="badge-row">
+      <span class="badge">Unduh media</span>
+      <span class="badge">Sticker</span>
+      <span class="badge">Mini game</span>
+      <span class="badge">Asisten AI</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>YANG BOT INI LAKUKAN</h2>
+    <ul class="features">
+      <li><span class="n">01</span><span>Mengunduh video, audio, dan gambar dari berbagai link yang dibagikan di chat (YouTube, Instagram, TikTok, Pinterest, dan sejenisnya), untuk dipakai ulang di dalam percakapan.</span></li>
+      <li><span class="n">02</span><span>Membuat sticker dari foto atau video yang dikirim pengguna.</span></li>
+      <li><span class="n">03</span><span>Menjawab pertanyaan dan mengobrol lewat model AI, buat percakapan santai maupun cari informasi cepat.</span></li>
+      <li><span class="n">04</span><span>Mini game tebak-tebakan ringan dan beberapa fitur pengelolaan grup untuk admin.</span></li>
+    </ul>
+  </section>
+
+  <section class="block prose" id="privacy">
+    <h2>KEBIJAKAN PRIVASI</h2>
+    <p>Terakhir diperbarui: 2026.</p>
+    <p>Furixv Bot adalah proyek pribadi, bukan produk komersial. Halaman ini menjelaskan data apa yang bot proses dan bagaimana data itu dipakai.</p>
+
+    <h3>Data yang diproses</h3>
+    <ul>
+      <li>Pesan dan perintah yang dikirim langsung ke bot, secukupnya untuk menjalankan perintah tersebut (mis. kata kunci pencarian, tautan yang mau diunduh).</li>
+      <li>Metadata WhatsApp standar yang perlu untuk membalas pesan (ID pengirim, ID grup), sesuai yang disediakan WhatsApp ke setiap bot/aplikasi pihak ketiga.</li>
+      <li>Untuk fitur pencarian Pinterest: kata kunci yang dikirim pengguna diteruskan ke Pinterest API untuk mengambil hasil publik, lalu ditampilkan kembali di chat. Bot tidak mengakses Pin atau Papan pribadi milik akun mana pun.</li>
+    </ul>
+
+    <h3>Yang tidak dilakukan bot ini</h3>
+    <ul>
+      <li>Tidak menjual atau membagikan data ke pihak ketiga.</li>
+      <li>Tidak menyimpan riwayat percakapan lebih lama daripada yang dibutuhkan untuk menjalankan fiturnya (mis. sesi mini game yang sedang berjalan).</li>
+      <li>Tidak mengakses kontak, Pin, atau Papan pribadi pengguna Pinterest mana pun.</li>
+    </ul>
+
+    <h3>Kontak</h3>
+    <p>Ada pertanyaan soal data atau privasi? Hubungi lewat bot ini langsung, atau melalui pengembang yang tertera di grup tempat bot digunakan.</p>
+  </section>
+</main>
+
+<footer>
+  Furixv Bot — proyek pribadi, dikembangkan &amp; dikelola independen.
+</footer>
+
+</body>
+</html>
